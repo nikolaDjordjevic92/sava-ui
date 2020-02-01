@@ -1,0 +1,32 @@
+<h2>Create urls that are shorter</h2>
+
+<div class="fields-div">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Website" [formControl]="webPage"
+           [errorStateMatcher]="matcher">
+    <mat-error *ngIf="webPage.hasError('pattern') && !webPage.hasError('required')">
+      Invalid url
+    </mat-error>
+    <mat-error *ngIf="webPage.hasError('required')">
+      Url is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <button mat-button (click)="createShorterUrl()" mat-raised-button color="primary">
+    Shrink!
+  </button>
+  <br>
+  <mat-label>
+    {{shortUrl.value ? 'You have successfully generated short url: ' + shortUrl.value:''}}
+  </mat-label>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Website" [formControl]="urlToExtract">
+  </mat-form-field>
+  <button (click)="extractUrl()" color="warn" mat-raised-button>
+    Extract!
+  </button>
+  <br>
+  <mat-label>
+    {{extractedUrl.value ? 'You have successfully extracted orignial url: ' + extractedUrl.value:''}}
+  </mat-label>
+</div>
+<button mat-raised-button (click)="redirectToPopularDomain()">Popular domains</button>
